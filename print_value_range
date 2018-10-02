@@ -1,0 +1,24 @@
+template <class Item>
+void bag<Item>::print_value_range(const Item& x, const Item& y){
+    //use as flag to check if in range of x and y, specifically checking if iterator has been past x
+    bool print = false;
+    //if x doesn't exist print nothing
+    if(count(x) == 0)
+        return;
+    //if y doesn't exist print to the end of the bag    
+    if(count(y) == 0)
+        for(bag<Item>::iterator itr = bag<Item>::begin(); itr != bag<Item>::end(); itr++){
+            if(*itr == x)
+                print = true;
+            if(print)
+                std::cout << *itr << " ";
+        } else { //if there is an ending y in the bag, iterate until that y but do not print it
+            for(bag<Item>::iterator itr = bag<Item>::begin(); *itr != y; itr++) {
+            if(*itr == x)
+                print = true;
+            if(print)
+                std::cout << *itr << " ";
+            }
+        }
+        std::cout << std::endl;
+}
